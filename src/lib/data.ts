@@ -1,7 +1,7 @@
 import type { ModelRow, Model, SortField } from '@/types/model';
 
-const CSV_URL = '/data/siliconflow_models.csv';
-const META_URL = '/data/metadata.json';
+const CSV_URL = `${import.meta.env.BASE_URL}data/siliconflow_models.csv`;
+const META_URL = `${import.meta.env.BASE_URL}data/metadata.json`;
 const CACHE_KEY = 'sf_models_cache';
 const CACHE_TS_KEY = 'sf_models_ts';
 const CACHE_DATE_KEY = 'sf_models_date';
