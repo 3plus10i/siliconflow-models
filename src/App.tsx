@@ -47,14 +47,22 @@ export default function App() {
         {/* Header */}
         <header className="mb-5">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-bold text-gray-900">SiliconFlow 模型列表</h1>
+            <h1 className="text-2xl font-bold text-gray-900">SiliconFlow 模型列表 - 参数|上下文|价格|能力</h1>
             <a
-              href="/data/siliconflow_models_20260303.csv"
+              href="/data/siliconflow_models.csv"
               download
               className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              下载原始数据表
+              下载 CSV
+            </a>
+            <a
+              href="/data/siliconflow_models.json"
+              download
+              className="inline-flex items-center gap-1 px-2 py-1 text-xs rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              下载 JSON
             </a>
           </div>
           <p className="text-sm text-gray-500 mt-1">

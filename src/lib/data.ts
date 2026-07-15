@@ -1,13 +1,14 @@
 import type { ModelRow, Model, SortField } from '@/types/model';
 
-const CSV_URL = '/data/siliconflow_models_20260303.csv';
+const CSV_URL = '/data/siliconflow_models.csv';
+const META_URL = '/data/metadata.json';
 const CACHE_KEY = 'sf_models_cache';
 const CACHE_TS_KEY = 'sf_models_ts';
+const CACHE_DATE_KEY = 'sf_models_date';
 const CACHE_TTL = 3600_000;
 
-/** 从 CSV 文件名提取数据日期 */
-const _m = CSV_URL.match(/(\d{4})(\d{2})(\d{2})/);
-export const DATA_DATE = _m ? `${_m[1]}-${_m[2]}-${_m[3]}` : '';
+/** 数据更新日期，在 loadModels() 中赋值 */
+export let DATA_DATE = '';
 
 /** 子类型 → 中文标签 */
 export const SUBTYPE_LABELS: Record<string, string> = {
@@ -186,14 +187,26 @@ function compute(row: ModelRow): Model {
 export async function loadModels(): Promise<Model[]> {
   const cached = localStorage.getItem(CACHE_KEY);
   const cachedTs = localStorage.getItem(CACHE_TS_KEY);
-  if (cached && cachedTs && Date.now() - parseInt(cachedTs) < CACHE_TTL) {
+  const cachedDate = localStorage.getItem(CACHE_DATE_KEY);
+  if (cached && cachedTs && cachedDate && Date.now() - parseInt(cachedTs) < CACHE_TTL) {
+    DATA_DATE = cachedDate;
     return JSON.parse(cached).map(compute);
   }
-  const resp = await fetch(CSV_URL);
-  const text = await resp.text();
+  const [csvResp, metaResp] = await Promise.all([
+    fetch(CSV_URL),
+    fetch(META_URL),
+  ]);
+  const text = await csvResp.text();
+  try {
+    const meta = await metaResp.json();
+    DATA_DATE = meta.date || '';
+  } catch {
+    DATA_DATE = '';
+  }
   const rows = simpleCSV(text).map(compute);
   localStorage.setItem(CACHE_KEY, JSON.stringify(rows));
   localStorage.setItem(CACHE_TS_KEY, String(Date.now()));
+  localStorage.setItem(CACHE_DATE_KEY, DATA_DATE);
   return rows;
 }
 

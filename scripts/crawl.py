@@ -17,7 +17,7 @@ HEADERS = {
 }
 MODELS_URL = "https://siliconflow.cn/models"
 PRICING_URL = "https://siliconflow.cn/pricing"
-OUTPUT = os.path.join(os.path.dirname(__file__), "..", "public", "data", "siliconflow_models_20260303.csv")
+OUTPUT = os.path.join(os.path.dirname(__file__), "..", "public", "data", "siliconflow_models.csv")
 
 # -----------------------------------------------------------------------
 # 通用 Next.js JSON 解析
@@ -201,7 +201,9 @@ def fmt_date(val):
 # 主流程
 # -----------------------------------------------------------------------
 def main():
-    import requests
+    import requests, hashlib
+    today = datetime.now().strftime("%Y-%m-%d")
+
     print("抓取 /models ...")
     models = _decode_next_data(requests.get(MODELS_URL, headers=HEADERS, timeout=30).text)
     if not models or not isinstance(models, list):
@@ -262,13 +264,44 @@ def main():
             "描述": (m.get("desc", "") or "").replace("\n", " ").strip(),
         })
 
-    os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
-    with open(OUTPUT, "w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
-        w.writeheader()
-        w.writerows(rows)
+    data_dir = os.path.dirname(OUTPUT)
+    os.makedirs(data_dir, exist_ok=True)
 
-    print(f"  → {OUTPUT}  ({len(rows)} 行, 未匹配价格 {unmatched}, 区间定价 {tiered})")
+    # 生成 CSV 内容并计算 hash，数据不变则跳过写入
+    import io
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, fieldnames=fields)
+    w.writeheader()
+    w.writerows(rows)
+    new_csv = buf.getvalue()
+    new_hash = hashlib.md5(new_csv.encode("utf-8")).hexdigest()
+
+    csv_path = OUTPUT
+    old_hash = None
+    if os.path.exists(csv_path):
+        with open(csv_path, "rb") as f:
+            old_hash = hashlib.md5(f.read()).hexdigest()
+
+    if old_hash == new_hash:
+        print(f"数据无变化 (hash={old_hash})，跳过更新")
+        return
+
+    # 写入 CSV
+    with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
+        f.write(new_csv)
+    print(f"  → {csv_path}  ({len(rows)} 行, 未匹配价格 {unmatched}, 区间定价 {tiered})")
+
+    # 写入 JSON
+    json_path = os.path.join(data_dir, "siliconflow_models.json")
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(rows, f, ensure_ascii=False, indent=2)
+    print(f"  → {json_path}")
+
+    # 写入 metadata
+    meta_path = os.path.join(data_dir, "metadata.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({"date": today, "count": len(rows)}, f, ensure_ascii=False)
+    print(f"  → {meta_path}  date={today}")
 
 if __name__ == "__main__":
     main()
