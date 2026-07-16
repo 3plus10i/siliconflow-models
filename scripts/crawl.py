@@ -8,7 +8,7 @@ SiliconFlow 模型爬虫 — 从公开页面抓取模型元数据和价格表，
   - 价格表     https://siliconflow.cn/pricing （pricingApiItems，仅取 online 计费模式）
 """
 import csv, json, re, sys, os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 
 HEADERS = {
@@ -193,7 +193,8 @@ def fmt_date(val):
         n = int(val)
         if n > 1e12:
             n //= 1000
-        return datetime.fromtimestamp(n).strftime("%Y-%m-%d")
+        dt = datetime.fromtimestamp(n, tz=timezone.utc).astimezone(timezone(timedelta(hours=8)))
+        return dt.strftime("%Y-%m-%d")
     except (TypeError, ValueError):
         return str(val)
 

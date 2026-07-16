@@ -13,6 +13,7 @@
 
 - `vite.config.ts` 中 `base` 由 `process.env.BASE_URL` 控制，未设置时回退为 `/`
 - `src/lib/data.ts` 中 CSV/META URL 用 `import.meta.env.BASE_URL` 拼接，这是 Vite 构建时常量
+- `src/App.tsx` 中下载链接（CSV/JSON）同理，硬编码 `/data/...` 在 GitHub Pages 上会解析为 `https://<user>.github.io/data/...`，缺少 repo 前缀导致 404。需要将 `import.meta.env.BASE_URL` 拼接到 URL 中，如 `import.meta.env.BASE_URL + '/data/siliconflow_models.csv'`
 - GitHub Pages 部署通过 `.github/workflows/deploy-pages.yml`，构建时注入 `BASE_URL=/siliconflow-models/`
 - EdgeOne Pages 构建流程不设此变量，走默认 `/`，不影响自定义域名
 - GitHub Pages 部署后需在仓库 `Settings → Pages` 中确认 Source 为 **"GitHub Actions"**

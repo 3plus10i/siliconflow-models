@@ -3,18 +3,19 @@ import type { Model, SortSlot } from '@/types/model';
 import { SUBTYPE_LABELS, brandDisplayLabel } from '@/lib/data';
 
 const COLUMNS = [
-  { key: '模型名',      width: 280, sticky: true },
-  { key: '参数量',      width: 60,  align: 'right' as const },
-  { key: '上下文长度',  width: 60,  align: 'right' as const },
-  { key: '价格',        width: 150 },
-  { key: '类型',        width: 80 },
-  { key: '视觉能力',    width: 52 },
-  { key: '工具调用能力',width: 52 },
-  { key: 'JSON模式能力',width: 52 },
-  { key: '前缀续写',    width: 52 },
-  { key: 'FIM补全能力', width: 52 },
+  { key: '模型名',      label: '模型名',   width: 280, sticky: true },
+  { key: '尺寸',        label: '参数量',   width: 60,  align: 'right' as const },
+  { key: '上下文长度',  label: '上下文长度',width: 60,  align: 'right' as const },
+  { key: '价格',        label: '价格',     width: 150 },
+  { key: '类型',        label: '类型',     width: 80 },
+  { key: '视觉能力',    label: '视觉能力', width: 52 },
+  { key: '工具调用能力',label: '工具调用能力',width: 52 },
+  { key: 'JSON模式能力',label: 'JSON模式能力',width: 52 },
+  { key: '前缀续写',    label: '前缀续写', width: 52 },
+  { key: 'FIM补全能力', label: 'FIM补全能力',width: 52 },
 ];
 const CAP_KEYS = ['视觉能力', '工具调用能力', 'JSON模式能力', '前缀续写', 'FIM补全能力'] as const;
+const SFPurple = '#f7f3ff';
 
 interface Props { models: Model[]; sortSlots: SortSlot[]; }
 
@@ -31,8 +32,8 @@ export default function ModelTable({ models, sortSlots }: Props) {
     .filter(Boolean) as { field: string; dir: string; idx: number }[];
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-      <div className="overflow-x-auto" style={{ maxHeight: '75vh' }}>
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden" style={{ border: `1px solid ${SFPurple}` }}>
+      <div className="overflow-x-auto" style={{ maxHeight: '85vh' }}>
         <table className="w-full text-sm border-collapse table-fixed">
           <thead className="sticky top-0 z-10">
             <tr>
@@ -41,14 +42,14 @@ export default function ModelTable({ models, sortSlots }: Props) {
                 return (
                   <th
                     key={col.key}
-                    className={`px-2 py-2.5 text-xs font-semibold text-gray-600 bg-gray-50 border-r border-gray-200 last:border-r-0 ${
+                    className={`px-2 py-2.5 text-xs font-semibold text-gray-600 border-r border-gray-200 last:border-r-0 ${
                       col.sticky ? 'sticky left-0 z-20' : ''
                     }`}
-                    style={{ width: col.width }}
+                    style={{ width: col.width, background: SFPurple }}
                   >
                     {col.key === '价格' ? (
                       <>价格<span className="text-[10px] font-normal text-gray-400">（输入/输出）</span></>
-                    ) : col.key}
+                    ) : col.label}
                     {tag && (
                       <span className={`ml-0.5 text-[10px] ${
                         tag.idx === 0 ? 'text-blue-600' : tag.idx === 1 ? 'text-indigo-500' : 'text-violet-400'
