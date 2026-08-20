@@ -1,5 +1,28 @@
 [
   {
+    "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/Tongyi.svg",
+    "模型品牌": "Qwen",
+    "模型名": "Qwen/Qwen3-ASR-1.7B",
+    "显示名称": "Qwen3-ASR-1.7B",
+    "发布时间": "2026-08-18",
+    "类型": "音频",
+    "子类型": "speech-to-text",
+    "输入价格": "",
+    "输出价格": "",
+    "缓存输入价格": "",
+    "区间定价": "",
+    "其他计费": "",
+    "上下文长度": "0",
+    "尺寸": "2B",
+    "视觉能力": false,
+    "工具调用能力": false,
+    "JSON模式能力": false,
+    "前缀续写": false,
+    "FIM补全能力": false,
+    "其他功能": "语音识别",
+    "描述": "Qwen3-ASR 系列包括 Qwen3-ASR-1.7B 和 Qwen3-ASR-0.6B，支持 52 种语言和方言的语言识别和语音识别（ASR）。两者均利用大规模语音训练数据和基础模型 Qwen3-Omni 强大的音频理解能力。实验表明，1.7B 版本在开源 ASR 模型中达到了最先进的性能，并与最强的商业 API 具有竞争力"
+  },
+  {
     "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/zhipu.svg",
     "模型品牌": "zai",
     "模型名": "Pro/zai-org/GLM-5.1",
