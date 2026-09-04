@@ -1,5 +1,28 @@
 [
   {
+    "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/zhipu.svg",
+    "模型品牌": "zai",
+    "模型名": "zai-org/GLM-5.3",
+    "显示名称": "GLM-5.3",
+    "发布时间": "2026-08-14",
+    "类型": "对话",
+    "子类型": "chat",
+    "输入价格": "¥8.0 / M tokens",
+    "输出价格": "¥28.0 / M tokens",
+    "缓存输入价格": "¥2.0 / M tokens",
+    "区间定价": "",
+    "其他计费": "",
+    "上下文长度": "1M",
+    "尺寸": "744B",
+    "视觉能力": false,
+    "工具调用能力": true,
+    "JSON模式能力": true,
+    "前缀续写": false,
+    "FIM补全能力": false,
+    "其他功能": "",
+    "描述": "GLM-5.3 是智谱 AI 推出的 GLM-5 系列旗舰模型，沿用与 GLM-5.2 相同的基础模型，通过后训练在复杂编码、网络安全和长程智能体任务上实现显著提升。模型采用 MoE 架构，总参数量约 744B，激活参数约 40B，原生支持 1,048,576 tokens 上下文窗口、函数调用与结构化输出，适用于复杂软件工程、漏洞发现与长程智能体任务"
+  },
+  {
     "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/Tongyi.svg",
     "模型品牌": "Qwen",
     "模型名": "Qwen/Qwen3-ASR-1.7B",
