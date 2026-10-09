@@ -1,5 +1,28 @@
 [
   {
+    "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/zhipu.svg",
+    "模型品牌": "zai",
+    "模型名": "zai-org/GLM-5.3-Flash",
+    "显示名称": "GLM-5.3-Flash",
+    "发布时间": "2026-08-26",
+    "类型": "对话",
+    "子类型": "chat",
+    "输入价格": "¥0.8 / M tokens",
+    "输出价格": "¥2.8 / M tokens",
+    "缓存输入价格": "¥0.23 / M tokens",
+    "区间定价": "",
+    "其他计费": "",
+    "上下文长度": "1M",
+    "尺寸": "320B",
+    "视觉能力": true,
+    "工具调用能力": true,
+    "JSON模式能力": true,
+    "前缀续写": false,
+    "FIM补全能力": false,
+    "其他功能": "",
+    "描述": "GLM-5.3-Flash 是智谱推出的原生多模态模型，总参数 320B、激活参数 18B，采用稀疏注意力与线性注意力混合架构，支持 1M 上下文，擅长视觉理解、编程、深度推理与复杂智能体任务"
+  },
+  {
     "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/moonshotai_new.png",
     "模型品牌": "moonshotai",
     "模型名": "Pro/moonshotai/Kimi-K2.6",
