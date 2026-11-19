@@ -1,5 +1,28 @@
 [
   {
+    "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/TeleAI.svg",
+    "模型品牌": "ChinaTelecom",
+    "模型名": "XingChenAGI/Xing-Audio4.0-ASR-Preview",
+    "显示名称": "Xing-Audio4.0-ASR-Preview",
+    "发布时间": "2026-11-15",
+    "类型": "音频",
+    "子类型": "speech-to-text",
+    "输入价格": "",
+    "输出价格": "",
+    "缓存输入价格": "",
+    "区间定价": "",
+    "其他计费": "",
+    "上下文长度": "0",
+    "尺寸": "0B",
+    "视觉能力": false,
+    "工具调用能力": false,
+    "JSON模式能力": false,
+    "前缀续写": false,
+    "FIM补全能力": false,
+    "其他功能": "语音识别",
+    "描述": "Xing-Audio4.0-ASR-Preview 是中电信人工智能公司 XingChen AGI Lab 推出的新一代高性能英文语音识别模型，专注于高精度英文自动语音识别（Automatic Speech Recognition, ASR）。在 Artificial Analysis（AA）非流式（Non-Streaming）语音识别榜单中位列全球第三，AA-WER 达到 2.0%，展现出卓越的英文语音转写能力。模型适用于英文会议、商务交流、在线教育、播客及媒体内容转写等多种场景。"
+  },
+  {
     "logo": "https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/Model_LOGO/openmoss.svg",
     "模型品牌": "openmoss",
     "模型名": "OpenMOSS-Team/MOSS-Image",
